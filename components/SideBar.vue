@@ -1,0 +1,83 @@
+<template>
+  <div class="menu hidden md:flex w-72 lg:w-96">
+    <search-input class="mb-2" />
+    <div class="flex-1 w-full overflow-auto">
+      <div class="w-full">
+        <movie-item v-for="(movie,index) in movies" :key="index" :movie="movie" class="block" />
+      </div>
+    </div>
+    <!-- Panel Footer -->
+    <div class="menu-footer flex h-14 mt-2 bg-indigo-700 text-gray-200 rounded">
+      <div class="inline-block w-1/6 flex justify-center items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-10 w-10 bg-indigo-400 hover:bg-indigo-500 rounded cursor-pointer"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          @click="onPreviousPage"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </div>
+      <div class="inline-block w-4/6 text-center">
+        <b>Page {{ page }} / {{ pagesTotal }}</b>
+        <br>
+        {{ totalResults }} Results
+      </div>
+      <div class="inline-block w-1/6 flex justify-center items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-10 w-10 bg-indigo-400 hover:bg-indigo-500 rounded cursor-pointer"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          @click="onNextPage"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import MovieItem from './../components/MovieItem.vue'
+import SearchInput from './../components/SearchInput.vue'
+
+export default {
+  components: { SearchInput, MovieItem },
+  computed: {
+    movies () { return this.$store.getters['movies/movies'] },
+    totalResults () { return this.$store.getters['movies/totalResults'] },
+    page: {
+      get () { return this.$store.getters['movies/page'] },
+      set (val) { this.$store.commit('movies/setPage', val) }
+    },
+    pagesTotal () { return this.$store.getters['movies/pagesTotal'] }
+  },
+  methods: {
+    onPreviousPage () {
+      if (this.page > 1) {
+        this.page -= 1
+        this.$store.dispatch('movies/getMovies', this.page)
+      }
+    },
+    onNextPage () {
+      if (this.page < this.pagesTotal) {
+        this.page += 1
+        this.$store.dispatch('movies/getMovies', this.page)
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.menu {
+  @apply bg-indigo-800;
+  @apply flex-col;
+  @apply h-screen;
+  @apply p-5;
+}
+</style>

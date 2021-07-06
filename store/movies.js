@@ -1,19 +1,28 @@
 export const state = () => ({
-  movies: null,
-  status: null
+  searchName: '',
+  movies: [],
+  totalResults: 0,
+  status: null,
+  page: 0
 })
 
 export const getters = {
+  searchName: state => state.searchName,
   movies: state => state.movies,
-  status: state => state.status
+  status: state => state.status,
+  totalResults: state => state.totalResults,
+  page: state => state.page || 0,
+  pagesTotal: (state) => { return Math.ceil(state.totalResults / 10) || 0 }
 }
 
 export const actions = {
-  async fetchMovies ({ commit }) {
+  async getMovies ({ commit, state }, page) {
     commit('setStatus', 'loading')
-    await this.$axios.get('/servers')
+    await this.$axios.get(`https://www.omdbapi.com/?s=${state.searchName}&page=${page}&apikey=508429e0`)
       .then((res) => {
-        commit('setMovies', res.data)
+        console.log(res.data)
+        commit('setMovies', res.data.Search)
+        commit('setTotalResults', res.data.totalResults)
         commit('setStatus', 'success')
       })
       .catch((err) => {
@@ -29,6 +38,15 @@ export const mutations = {
     state.status = text
   },
   setMovies (state, movies) {
-    state.servers = movies
+    state.movies = movies
+  },
+  setTotalResults (state, number) {
+    state.totalResults = number
+  },
+  setSearchName (state, name) {
+    state.searchName = name
+  },
+  setPage (state, page) {
+    state.page = page
   }
 }
