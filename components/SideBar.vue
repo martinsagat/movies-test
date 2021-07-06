@@ -1,10 +1,12 @@
 <template>
-  <div class="menu hidden md:flex w-72 lg:w-96">
-    <search-input class="mb-2" />
+  <div class="menu hidden md:flex w-96">
+    <search-input class="mb-6" />
     <div class="flex-1 w-full overflow-auto">
-      <div class="w-full">
+      <loader v-if="moviesStatus === 'loading'" />
+      <div v-else class="w-full">
         <movie-item v-for="(movie,index) in movies" :key="index" :movie="movie" class="block" />
       </div>
+      <error v-if="moviesStatus === 'error'" />
     </div>
     <!-- Panel Footer -->
     <div class="menu-footer flex h-14 mt-2 bg-indigo-700 text-gray-200 rounded">
@@ -44,9 +46,11 @@
 <script>
 import MovieItem from './../components/MovieItem.vue'
 import SearchInput from './../components/SearchInput.vue'
+import Loader from './../components/Loader.vue'
+import Error from './../components/Error.vue'
 
 export default {
-  components: { SearchInput, MovieItem },
+  components: { SearchInput, MovieItem, Loader, Error },
   computed: {
     movies () { return this.$store.getters['movies/movies'] },
     totalResults () { return this.$store.getters['movies/totalResults'] },
@@ -54,7 +58,9 @@ export default {
       get () { return this.$store.getters['movies/page'] },
       set (val) { this.$store.commit('movies/setPage', val) }
     },
-    pagesTotal () { return this.$store.getters['movies/pagesTotal'] }
+    pagesTotal () { return this.$store.getters['movies/pagesTotal'] },
+    moviesStatus () { return this.$store.getters['movies/status'] },
+    error () { return this.$store.getters['movies/error'] }
   },
   methods: {
     onPreviousPage () {

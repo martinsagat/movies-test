@@ -17,7 +17,7 @@
       v-model="searchName"
       type="search"
       class="p-2 text-lg text-gray-800 bg-gray-200 rounded-md pl-10 focus:outline-none focus:bg-gray-300 w-full h-12 focus:text-gray-900"
-      placeholder="Search movies..."
+      placeholder="Search movies"
       autocomplete="off"
       @input="onSearch"
     >
@@ -40,16 +40,24 @@ export default {
       get () { return this.$store.getters['movies/page'] },
       set (val) { this.$store.commit('movies/setPage', val) }
     },
-    moviesStatus () { return this.$store.getters['movies/status'] }
+    moviesStatus: {
+      get () { return this.$store.getters['movies/status'] },
+      set (val) { this.$store.commit('movies/setStatus', val) }
+    }
   },
   methods: {
     onSearch (event) {
       clearTimeout(this.debounce)
-      this.$store.commit('movies/setStatus', 'loading')
-      this.debounce = setTimeout(() => {
-        this.$store.dispatch('movies/getMovies', 1).then(() => { this.page = 1 })
-        this.$store.commit('movies/setStatus', 'status')
-      }, 1000)
+      if (this.searchName !== '') {
+        this.debounce = setTimeout(() => {
+          if (this.searchName !== '') {
+            this.$store.commit('movies/setStatus', 'loading')
+            this.$store.dispatch('movies/getMovies', 1)
+          }
+        }, 1000)
+      } else {
+        this.moviesStatus = null
+      }
     }
   }
 }

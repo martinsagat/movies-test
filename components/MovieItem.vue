@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movie !== null" :title="movie.Title" class="select-none cursor-pointer bg-gray-100 rounded-md flex flex-1 items-center px-2 py-1 mb-2 shadow hover:bg-indigo-100" @click="onSelectMovie(movie.imdbID)">
+  <div v-if="movie !== null" :title="movie.Title" class="select-none cursor-pointer bg-indigo-100 rounded-md flex flex-1 items-center px-2 py-1 mb-2 shadow hover:bg-indigo-200" @click="onSelectMovie(movie.imdbID)">
     <div class="flex-col font-sm flex-1 mr-16 truncate">
       {{ movie.Title }}
     </div>

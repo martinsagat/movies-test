@@ -1,6 +1,6 @@
 <template>
-  <div v-if="movie" class="card bg-white p-5 h-full grid grid-cols-12 rounded-xl">
-    <div class="col-span-8 p-5">
+  <div v-if="movie" class="flex">
+    <div class="p-5">
       <h1>{{ movie.Title }}</h1>
       <div>
         {{ movie.Genre }}
@@ -13,7 +13,7 @@
       <p><b>Actors: XYZ,</b> {{ movie.Actors }}</p>
       <p><b>Duration:</b> {{ movie.Runtime }}</p>
     </div>
-    <div class="col-span-4 p-5">
+    <div class="p-5">
       <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" class="w-full">
     </div>
   </div>

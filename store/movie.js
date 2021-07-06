@@ -11,11 +11,10 @@ export const getters = {
 export const actions = {
   async fetchMovie ({ commit }, id) {
     commit('setStatus', 'loading')
-    await this.$axios.get(`https://www.omdbapi.com/?i=${id}&apikey=508429e0`)
+    await this.$axios.get(`https://www.omdbapi.com/?i=${id}&apikey=${process.env.VUE_APP_API_KEY}`)
       .then((res) => {
-        console.log(res.data)
         commit('setMovie', res.data)
-        commit('setStatus', 'success')
+        commit('setStatus', 'loaded')
       })
       .catch((err) => {
         console.log(err)
