@@ -4,7 +4,8 @@ export const state = () => ({
   totalResults: 0,
   status: null,
   page: 0,
-  error: null
+  error: null,
+  menuOpened: false
 })
 
 export const getters = {
@@ -14,18 +15,16 @@ export const getters = {
   totalResults: state => state.totalResults,
   page: state => state.page || 0,
   pagesTotal: (state) => { return Math.ceil(state.totalResults / 10) || 0 },
-  error: (state) => { return state.error }
+  error: (state) => { return state.error },
+  menuOpened: (state) => { return state.menuOpened }
 }
 
 export const actions = {
   async getMovies ({ commit, state }, page) {
     commit('setStatus', 'loading')
-    console.log(process.env)
     await this.$axios.get(`https://www.omdbapi.com/?s=${state.searchName}&page=${page}&apikey=${process.env.VUE_APP_API_KEY}`)
       .then((res) => {
-        console.log('Response', res.data.Response)
         if (res.data.Response !== 'False') {
-          console.log(res.data)
           commit('setPage', page)
           commit('setMovies', res.data.Search)
           commit('setTotalResults', res.data.totalResults)
@@ -36,8 +35,6 @@ export const actions = {
       })
       .catch((err) => {
         alert(err.response.data.Error)
-        commit('setStatus', 'error')
-        // commit('setErrorMessage', err)
       })
   }
 }
@@ -48,6 +45,7 @@ export const mutations = {
       state.movies = []
       state.totalResults = 0
       state.page = 0
+      state.menuOpened = true
     }
     state.status = text
   },
@@ -66,5 +64,8 @@ export const mutations = {
   setError (state, error) {
     state.error = error
     state.status = 'error'
+  },
+  closeMenu (state) {
+    state.menuOpened = false
   }
 }

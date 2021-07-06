@@ -2,12 +2,14 @@
   <div v-if="movie" class="flex">
     <div class="p-5">
       <h1>{{ movie.Title }}</h1>
-      <div>
+      <div class="mb-5">
         {{ movie.Genre }}
       </div>
-      <br>
-      <p>{{ movie.Plot }}</p>
-      <br>
+
+      <div class="mb-5">
+        {{ movie.Plot }}
+      </div>
+
       <p><b>Language:</b> {{ movie.Language }}</p>
       <p><b>Director:</b> {{ movie.Director }}</p>
       <p><b>Actors: XYZ,</b> {{ movie.Actors }}</p>

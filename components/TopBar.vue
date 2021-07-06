@@ -1,7 +1,7 @@
 <template>
   <div class="relative p-2 h-16 bg-indigo-800 w-full">
     <search-input class="w-1/2" />
-    <div v-if="(movies && movies.length > 0 && !movie) || moviesStatus === 'loading' || moviesStatus === 'error'" class="absolute left-2 right-10 mt-10 bg-gray-200 p-5 rounded-b-xl rounded-tr-xl shadow">
+    <div v-if="menuOpened" class="absolute left-2 right-10 mt-10 bg-gray-200 p-5 rounded-b-xl rounded-tr-xl bg-opacity-90">
       <div v-if="movies.length > 0 && moviesStatus === 'loaded'">
         <movie-item v-for="(m, index) in movies" :key="index" :movie="m" />
       </div>
@@ -21,9 +21,11 @@ import Error from './../components/Error.vue'
 export default {
   components: { SearchInput, MovieItem, Loader, Error },
   computed: {
+    menuOpened () { return this.$store.getters['movies/menuOpened'] },
     movies () { return this.$store.getters['movies/movies'] },
     movie () { return this.$store.getters['movie/movie'] },
-    moviesStatus () { return this.$store.getters['movies/status'] }
+    moviesStatus () { return this.$store.getters['movies/status'] },
+    movieStatus () { return this.$store.getters['movie/status'] }
   }
 }
 </script>

@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     onSelectMovie (imdbID) {
+      this.$store.commit('movies/closeMenu')
       this.$store.dispatch('movie/fetchMovie', imdbID)
     }
   }

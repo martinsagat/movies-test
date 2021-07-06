@@ -56,7 +56,7 @@ export default {
           }
         }, 1000)
       } else {
-        this.moviesStatus = null
+        this.$store.commit('movies/closeMenu')
       }
     }
   }

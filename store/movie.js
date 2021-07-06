@@ -17,9 +17,7 @@ export const actions = {
         commit('setStatus', 'loaded')
       })
       .catch((err) => {
-        console.log(err)
-        commit('setStatus', 'error')
-        // commit('setErrorMessage', err)
+        alert(err.response.data.Error)
       })
   }
 }
