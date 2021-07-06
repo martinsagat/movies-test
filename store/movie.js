@@ -5,7 +5,18 @@ export const state = () => ({
 
 export const getters = {
   movie: state => state.movie,
-  status: state => state.status
+  status: state => state.status,
+  genres: (state) => {
+    if (state.movie.Genre) {
+      const genres = state.movie.Genre.split(', ')
+      genres.forEach((g) => {
+        g.trim()
+      })
+      return genres
+    } else {
+      return []
+    }
+  }
 }
 
 export const actions = {

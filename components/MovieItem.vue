@@ -1,6 +1,6 @@
 <template>
   <div v-if="movie !== null" :title="movie.Title" class="movie-item" @click="onSelectMovie(movie.imdbID)">
-    <div class="flex-col font-sm flex-1 mr-16 truncate">
+    <div class="flex-col font-sm font-medium flex-1 mr-16 truncate">
       {{ movie.Title }}
     </div>
     <div class="flex flex-col text-gray-600 text-xs bg-yellow-30">

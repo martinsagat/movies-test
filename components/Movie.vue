@@ -1,9 +1,11 @@
 <template>
-  <div v-if="movie" class="flex flex-1">
+  <div v-if="movie" class="flex flex-1 text-xl">
     <div class="p-5 flex flex-col flex-1">
       <h1>{{ movie.Title }}</h1>
-      <div class="mb-5">
-        {{ movie.Genre }}
+      <div class="mb-5 mt-2 flex">
+        <div v-for="(genre, index) in genres" :key="index" class="inline-block bg-gray-800 text-gray-200 mr-1 mt-1 px-4 py-1 font-medium rounded-full">
+          {{ genre }}
+        </div>
       </div>
 
       <div class="mb-5">
@@ -27,6 +29,9 @@ export default {
   computed: {
     movie () {
       return this.$store.getters['movie/movie']
+    },
+    genres () {
+      return this.$store.getters['movie/genres']
     }
   }
 }
