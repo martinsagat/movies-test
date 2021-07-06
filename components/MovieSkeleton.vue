@@ -1,6 +1,6 @@
 <template>
-  <div class="grid pulse grid-cols-12 w-full">
-    <div class="col-span-8 p-5">
+  <div class="flex pulse flex-1 w-full animate-pulse">
+    <div class="p-5 flex-col flex-1">
       <div class="h-8 w-60 bg-gray-300 rounded" />
       <div class="short-text" />
       <br>
@@ -11,9 +11,8 @@
       <div class="long-text" />
       <div class="medium-text" />
     </div>
-    <div class="col-span-4 p-5">
-      <div class="w-5/6 h-3/6 bg-gray-300" />
-      <!-- <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" class="w-full"> -->
+    <div class="p-5">
+      <div class="w-32 h-52 lg:w-80 lg:h-3/6 bg-gray-300" />
     </div>
   </div>
 </template>

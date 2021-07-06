@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movie !== null" :title="movie.Title" class="select-none cursor-pointer bg-indigo-100 rounded-md flex flex-1 items-center px-2 py-1 mb-2 shadow hover:bg-indigo-200" @click="onSelectMovie(movie.imdbID)">
+  <div v-if="movie !== null" :title="movie.Title" class="movie-item" @click="onSelectMovie(movie.imdbID)">
     <div class="flex-col font-sm flex-1 mr-16 truncate">
       {{ movie.Title }}
     </div>
@@ -42,3 +42,26 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.movie-item {
+  @apply select-none;
+  @apply cursor-pointer;
+  @apply bg-indigo-100;
+  @apply rounded-md;
+  @apply flex;
+  @apply flex-1;
+  @apply items-center;
+  @apply px-2;
+  @apply py-1;
+  @apply mb-2;
+  @apply shadow;
+  @apply transform;
+  @apply ease-in-out;
+  @apply duration-200;
+}
+.movie-item:hover {
+  @apply scale-105;
+  @apply bg-indigo-200;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="movie" class="flex">
-    <div class="p-5">
+  <div v-if="movie" class="flex flex-1">
+    <div class="p-5 flex flex-col flex-1">
       <h1>{{ movie.Title }}</h1>
       <div class="mb-5">
         {{ movie.Genre }}
@@ -16,7 +16,8 @@
       <p><b>Duration:</b> {{ movie.Runtime }}</p>
     </div>
     <div class="p-5">
-      <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" class="w-full">
+      <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" class="w-32 lg:w-full">
+      <object v-else data="~static/noimage.svg" width="300" height="600" />
     </div>
   </div>
 </template>

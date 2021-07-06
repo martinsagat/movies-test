@@ -1,9 +1,9 @@
 <template>
   <div class="menu hidden md:flex w-96">
-    <search-input class="mb-6" />
+    <search-input class="mb-6 p-2" />
     <div class="flex-1 w-full overflow-auto">
       <loader v-if="moviesStatus === 'loading'" />
-      <div v-else class="w-full">
+      <div v-else class="w-full p-2">
         <movie-item v-for="(movie,index) in movies" :key="index" :movie="movie" class="block" />
       </div>
       <error v-if="moviesStatus === 'error'" />
@@ -84,6 +84,6 @@ export default {
   @apply bg-indigo-800;
   @apply flex-col;
   @apply h-screen;
-  @apply p-5;
+  @apply p-2;
 }
 </style>

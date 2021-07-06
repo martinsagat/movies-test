@@ -1,5 +1,9 @@
 # Movies
 
+## Clone repository
+```bash
+$ git clone https://github.com/martinsagat/movies_test.git
+```
 ## Build Setup
 
 ```bash
