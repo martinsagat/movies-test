@@ -1,7 +1,7 @@
 <template>
   <div class="relative text-gray-800 focus-within:text-gray-600">
     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-      <button class="p-1 focus:outline-none focus:shadow-outline">
+      <button class="p-1 md:m-2 focus:outline-none focus:shadow-outline">
         <svg
           fill="none"
           stroke="currentColor"
@@ -16,7 +16,7 @@
     <input
       v-model="searchName"
       type="search"
-      class="p-2 text-lg text-gray-800 bg-gray-200 rounded-md pl-10 focus:outline-none focus:bg-gray-300 w-full h-12 focus:text-gray-900"
+      class="p-2 text-lg text-gray-800 bg-indigo-200 rounded-md pl-10 focus:outline-none focus:ring focus:border-pink-200 focus:bg-indigo-100 w-full h-12 focus:text-indigo-800 font-medium"
       placeholder="Search movies"
       autocomplete="off"
       @input="onSearch"

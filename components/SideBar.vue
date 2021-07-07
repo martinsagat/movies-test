@@ -1,12 +1,14 @@
 <template>
   <div class="menu hidden md:flex w-96">
-    <search-input class="mb-6 p-2" />
+    <!-- Search Input -->
+    <search-input class="mb-6 p-3" />
+    <!-- Display Results -->
     <div class="flex-1 w-full overflow-auto">
       <loader v-if="moviesStatus === 'loading'" />
-      <div v-else class="w-full p-2">
+      <div v-else class="w-full p-3">
         <movie-item v-for="(movie,index) in movies" :key="index" :movie="movie" class="block" />
       </div>
-      <error v-if="moviesStatus === 'error'" />
+      <error v-if="moviesStatus === 'error'" class="p-2" />
     </div>
     <!-- Panel Footer -->
     <div class="menu-footer flex h-14 mt-2 bg-indigo-700 text-gray-200 rounded">
@@ -54,13 +56,13 @@ export default {
   computed: {
     movies () { return this.$store.getters['movies/movies'] },
     totalResults () { return this.$store.getters['movies/totalResults'] },
+    pagesTotal () { return this.$store.getters['movies/pagesTotal'] },
+    moviesStatus () { return this.$store.getters['movies/status'] },
+    error () { return this.$store.getters['movies/error'] },
     page: {
       get () { return this.$store.getters['movies/page'] },
       set (val) { this.$store.commit('movies/setPage', val) }
-    },
-    pagesTotal () { return this.$store.getters['movies/pagesTotal'] },
-    moviesStatus () { return this.$store.getters['movies/status'] },
-    error () { return this.$store.getters['movies/error'] }
+    }
   },
   methods: {
     onPreviousPage () {
