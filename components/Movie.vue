@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movie" class="text-xl grid grid-cols-12 gap-1 w-full bg-red-300">
+  <div v-if="movie" class="text-xl grid grid-cols-12 gap-1 w-full">
     <div class="p-5 col-span-12 md:col-span-8">
       <h1>{{ movie.Title }}</h1>
       <div class="mb-5 mt-2 flex flex-wrap">
