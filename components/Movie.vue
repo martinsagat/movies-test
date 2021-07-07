@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movie" class="text-xl grid grid-cols-12 gap-1 w-full">
+  <div v-if="movie" class="movie">
     <div class="p-5 col-span-12 lg:col-span-8">
       <h1>{{ movie.Title }}</h1>
       <div class="mb-5 mt-2 flex flex-wrap">
@@ -38,6 +38,13 @@ export default {
 </script>
 
 <style scoped>
+.movie {
+  @apply text-xl;
+  @apply grid;
+  @apply grid-cols-12;
+  @apply gap-1;
+  @apply w-full;
+}
 .genre-badge {
   @apply inline-block;
   @apply bg-gray-800;

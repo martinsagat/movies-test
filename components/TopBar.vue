@@ -6,20 +6,19 @@
         <movie-item v-for="(m, index) in movies" :key="index" :movie="m" />
       </div>
       <loader v-if="moviesStatus === 'loading'" />
-      <error v-if="moviesStatus === 'error'" />
+      <search-error v-if="moviesStatus === 'error'" />
     </div>
   </div>
 </template>
 
 <script>
-
 import SearchInput from './../components/SearchInput.vue'
 import MovieItem from './../components/MovieItem.vue'
 import Loader from './../components/Loader.vue'
-import Error from './../components/Error.vue'
+import SearchError from './../components/SearchError.vue'
 
 export default {
-  components: { SearchInput, MovieItem, Loader, Error },
+  components: { SearchInput, MovieItem, Loader, SearchError },
   computed: {
     menuOpened () { return this.$store.getters['movies/menuOpened'] },
     movies () { return this.$store.getters['movies/movies'] },

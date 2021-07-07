@@ -8,7 +8,7 @@
       <div v-else class="w-full p-3">
         <movie-item v-for="(movie,index) in movies" :key="index" :movie="movie" class="block" />
       </div>
-      <error v-if="moviesStatus === 'error'" class="p-2" />
+      <search-error v-if="moviesStatus === 'error'" class="p-2" />
     </div>
     <!-- Panel Footer -->
     <div class="menu-footer flex h-14 mt-2 bg-indigo-700 text-gray-200 rounded">
@@ -49,10 +49,10 @@
 import MovieItem from './../components/MovieItem.vue'
 import SearchInput from './../components/SearchInput.vue'
 import Loader from './../components/Loader.vue'
-import Error from './../components/Error.vue'
+import SearchError from './../components/SearchError.vue'
 
 export default {
-  components: { SearchInput, MovieItem, Loader, Error },
+  components: { SearchInput, MovieItem, Loader, SearchError },
   computed: {
     movies () { return this.$store.getters['movies/movies'] },
     totalResults () { return this.$store.getters['movies/totalResults'] },

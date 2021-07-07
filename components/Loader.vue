@@ -1,5 +1,5 @@
 <template>
-  <div class="flex bg-gray-100 justify-center rounded p-2 mx-2">
+  <div class="loader">
     <div class="loading-dots-wrapper">
       <div class="loading-dots dark:bg-gray-100" :class="color" />
       <div class="loading-dots dark:bg-gray-100" :class="color" />
@@ -30,6 +30,15 @@ export default {
 </script>
 
 <style scoped>
+.loader {
+  @apply flex;
+  @apply bg-gray-100;
+  @apply justify-center;
+  @apply rounded;
+  @apply p-2;
+  @apply mx-2;
+}
+
 .loading-dots {
   height: 10px;
   width: 10px;
@@ -40,11 +49,9 @@ export default {
 @keyframes scaling {
   0%, 100%{
     transform:scale(0.1);
-    /* background-color: red; */
   }
   50%{
     transform:scale(1);
-    /* background-color: blue; */
   }
 }
 
