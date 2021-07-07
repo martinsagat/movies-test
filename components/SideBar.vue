@@ -1,9 +1,9 @@
 <template>
-  <div class="menu hidden md:flex w-96">
+  <div class="menu hidden md:flex">
     <!-- Search Input -->
-    <search-input class="mb-6 p-3" />
+    <search-input class="mb-6 p-3 w-96" />
     <!-- Display Results -->
-    <div class="flex-1 w-full overflow-auto">
+    <div class="flex-1 w-96 overflow-auto">
       <loader v-if="moviesStatus === 'loading'" />
       <div v-else class="w-full p-3">
         <movie-item v-for="(movie,index) in movies" :key="index" :movie="movie" class="block" />

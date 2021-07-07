@@ -2,7 +2,7 @@
   <div class="wrapper flex-col md:flex-row">
     <side-bar class="shadow-xl" />
     <top-bar class="flex md:hidden" />
-    <movie-skeleton v-if="movieStatus === 'loading'" />
+    <movie-skeleton v-if="movieStatus === 'loading' && !movie" class="" />
     <transition name="fade">
       <movie v-if="movie && movieStatus === 'loaded'" />
     </transition>
@@ -35,15 +35,16 @@ export default {
 
 <style scoped>
 .wrapper {
+  @apply relative;
   @apply bg-gray-100;
   @apply flex;
   @apply h-screen;
   @apply w-full;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .8s;
+.fade-enter-active {
+  transition: opacity .4s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>

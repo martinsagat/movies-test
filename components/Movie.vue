@@ -14,7 +14,7 @@
       <!-- Other Info -->
       <p><b>Language:</b> {{ movie.Language }}</p>
       <p><b>Director:</b> {{ movie.Director }}</p>
-      <p><b>Actors: XYZ,</b> {{ movie.Actors }}</p>
+      <p><b>Actors:</b> {{ movie.Actors }}</p>
       <p><b>Duration:</b> {{ movie.Runtime }}</p>
     </div>
     <!-- Image -->
