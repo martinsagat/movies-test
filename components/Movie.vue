@@ -2,7 +2,7 @@
   <div v-if="movie" class="flex flex-1 text-xl">
     <div class="p-5 flex flex-col flex-1">
       <h1>{{ movie.Title }}</h1>
-      <div class="mb-5 mt-2 flex">
+      <div class="mb-5 mt-2 flex flex-wrap">
         <div v-for="(genre, index) in genres" :key="index" class="genre-badge">
           {{ genre }}
         </div>

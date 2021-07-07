@@ -1,7 +1,7 @@
 <template>
   <div class="relative p-2 h-16 bg-indigo-800 w-full">
     <search-input class="w-1/2" />
-    <div v-if="menuOpened" class="menu">
+    <div v-if="menuOpened" class="absolute left-2 right-10 mt-10 bg-gray-200 p-5 rounded-b-xl rounded-tr-xl bg-opacity-90">
       <div v-if="movies.length > 0 && moviesStatus === 'loaded'">
         <movie-item v-for="(m, index) in movies" :key="index" :movie="m" />
       </div>
@@ -29,17 +29,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-menu {
-  @apply absolute;
-  @apply left-2;
-  @apply right-10;
-  @apply mt-10;
-  @apply bg-gray-200;
-  @apply p-5;
-  @apply rounded-b-xl;
-  @apply rounded-tr-xl;
-  @apply bg-opacity-90;
-}
-</style>
