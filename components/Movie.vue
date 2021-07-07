@@ -1,6 +1,6 @@
 <template>
-  <div v-if="movie" class="flex flex-1 text-xl">
-    <div class="p-5 flex flex-col flex-1">
+  <div v-if="movie" class="text-xl grid grid-cols-12 gap-1 w-full bg-red-300">
+    <div class="p-5 col-span-12 md:col-span-8">
       <h1>{{ movie.Title }}</h1>
       <div class="mb-5 mt-2 flex flex-wrap">
         <div v-for="(genre, index) in genres" :key="index" class="genre-badge">
@@ -18,8 +18,8 @@
       <p><b>Duration:</b> {{ movie.Runtime }}</p>
     </div>
     <!-- Image -->
-    <div class="p-5">
-      <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" class="w-32 lg:w-full">
+    <div class="p-5 col-span-12 md:col-span-4">
+      <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" class="w-full">
     </div>
   </div>
 </template>
